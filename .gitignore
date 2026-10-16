@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+media/
+staticfiles/
+
+# Local security replacement files
+portfolio/views_secure.py
+config/urls_secure.py

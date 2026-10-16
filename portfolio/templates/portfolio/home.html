@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FreelanceAI — Technology Without Limits</title>
+<meta name="description" content="AI engineering, technology discoveries, software and innovation.">
+<style>
+:root {
+  --bg:#080b14; --panel:#101626; --cyan:#58edff;
+  --purple:#a78bfa; --muted:#a1abc0; --line:#ffffff16;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#f6f8ff;font-family:Inter,"Segoe UI",Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+a,button{-webkit-tap-highlight-color:transparent}
+.container{width:min(1240px,92%);margin:auto}
+
+/* Header */
+.header{position:sticky;top:0;z-index:20;background:#090d17ed;backdrop-filter:blur(22px);border-bottom:1px solid var(--line)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1.2px;white-space:nowrap}
+.logo b{color:var(--cyan)}
+.menu{display:flex;align-items:center;gap:25px}
+.menu a{font-size:13px;color:#b8c1d5;transition:.22s}
+.menu a:hover{color:var(--cyan);transform:translateY(-2px)}
+.nav-cta{border:1px solid #58edff50;border-radius:9px;padding:10px 14px!important;color:var(--cyan)!important}
+
+/* News ticker */
+.ticker{height:43px;display:flex;align-items:center;overflow:hidden;border-top:1px solid #ffffff08;background:linear-gradient(90deg,#121a2b,#0b1220,#121a2b)}
+.ticker-label{align-self:stretch;display:flex;align-items:center;gap:8px;flex-shrink:0;padding:0 17px;background:var(--cyan);color:#071018;font-size:10px;font-weight:900;letter-spacing:1.4px}
+.live-dot{width:7px;height:7px;background:#ff315e;border-radius:50%;box-shadow:0 0 12px #ff315e;animation:pulse 1.5s infinite}
+.ticker-window{overflow:hidden;flex:1}
+.ticker-track{width:max-content;display:flex;align-items:center;animation:marquee 38s linear infinite}
+.ticker-window:hover .ticker-track{animation-play-state:paused}
+.ticker-item{padding:0 25px;color:#c5cee0;font-size:12px;white-space:nowrap}
+.ticker-item span{color:var(--cyan);margin-right:9px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
+
+/* Hero */
+.hero{padding:55px 0 35px;position:relative}
+.hero:before{content:"";position:absolute;top:0;left:-15%;width:60%;height:480px;background:#4837a51b;filter:blur(100px);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.hero-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin:13px 0 25px}
+h1{font-size:clamp(35px,5vw,61px);letter-spacing:-2.5px;line-height:1.04;margin:0;max-width:760px}
+.gradient{background:linear-gradient(100deg,#fff 10%,var(--cyan) 50%,#b5a1ff 90%);color:transparent;background-clip:text}
+.hero-note{max-width:290px;color:var(--muted);font-size:12px;line-height:1.9;margin:0 0 5px}
+.news-layout{display:grid;grid-template-columns:1.65fr 1fr;gap:17px}
+.news-card{position:relative;isolation:isolate;overflow:hidden;min-width:0;border:1px solid #ffffff1c;border-radius:16px;background:#121a2b;box-shadow:0 18px 55px #0003}
+.news-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#06091400 15%,#080b14a8 62%,#080b14f5 100%)}
+.news-card img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform .65s,filter .5s;filter:saturate(.85)}
+.news-card:hover img{transform:scale(1.065);filter:saturate(1.15)}
+.featured{min-height:455px}
+.side-news{display:grid;grid-template-rows:1fr 1fr;gap:17px;min-height:455px}
+.small-news{min-height:219px}
+.news-content{position:absolute;bottom:0;left:0;right:0;padding:25px}
+.small-news .news-content{padding:18px}
+.category{display:inline-flex;padding:6px 9px;border-radius:5px;border:1px solid #8befff55;background:#0b1826c9;color:var(--cyan);font-size:9px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}
+.news-content h2{font-size:clamp(22px,3vw,35px);line-height:1.18;letter-spacing:-.7px;margin:13px 0 9px;max-width:650px}
+.small-news h2{font-size:19px;margin:9px 0 6px}
+.news-content p{font-size:12px;line-height:1.8;color:#d1d7e5;margin:0;max-width:570px}
+.news-meta{display:flex;align-items:center;gap:12px;margin-top:15px;color:#aebbd0;font-size:10px}
+.news-meta .line{height:1px;width:32px;background:var(--cyan)}
+.headline-runner{position:absolute;left:0;right:0;bottom:0;overflow:hidden;background:#070b14d9;border-top:1px solid #ffffff20;backdrop-filter:blur(10px)}
+.headline-track{display:flex;align-items:center;width:max-content;animation:headline 24s linear infinite;padding:12px 0}
+.headline-runner:hover .headline-track{animation-play-state:paused}
+.headline-track span{white-space:nowrap;padding:0 24px;font-size:11px;font-weight:650;color:#fff}
+.headline-track span:before{content:"✦";color:var(--cyan);margin-right:12px}
+@keyframes headline{to{transform:translateX(-50%)}}
+
+/* Section & cards */
+.section{padding:58px 0}
+.section-title{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
+.section-title h2{font-size:clamp(25px,3vw,35px);margin:0;letter-spacing:-1px}
+.section-title p{color:var(--muted);font-size:12px;margin:6px 0 0}
+.section-link{font-size:12px;color:var(--cyan);white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.card{background:linear-gradient(145deg,#131c30,#0d1321);border:1px solid var(--line);border-radius:13px;padding:23px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px);border-color:#58edff65;box-shadow:0 15px 40px #0004,0 0 25px #58edff08}
+.card .symbol{font-size:25px;color:var(--cyan)}
+.card h3{font-size:17px;margin:12px 0 7px}
+.card p{font-size:12px;line-height:1.9;color:var(--muted);margin:0}
+.tag{display:inline-block;color:#b8c8e5;border:1px solid var(--line);border-radius:20px;padding:4px 9px;font-size:10px;margin:14px 5px 0 0}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.search{width:100%;padding:13px 15px;margin:0 0 18px;background:#111a2b;border:1px solid var(--line);border-radius:9px;color:white;outline:none}
+.search:focus{border-color:var(--cyan)}
+.pagination{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:23px}
+.page-btn{background:#111a2b;color:white;border:1px solid var(--line);border-radius:7px;padding:9px 13px;cursor:pointer}
+.page-btn.active,.page-btn:hover{background:var(--cyan);color:#071018}
+.notice{font-size:11px;color:#c8b994;background:#b98c3010;border:1px solid #b98c3035;border-radius:9px;padding:12px 15px;margin-top:20px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:11px}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:850px){.nav{padding:15px 0;align-items:flex-start;flex-direction:column;gap:15px}.menu{gap:17px;flex-wrap:wrap}.news-layout{grid-template-columns:1fr}.featured{min-height:420px}.side-news{grid-template-columns:1fr 1fr;grid-template-rows:1fr;min-height:230px}.small-news{min-height:230px}.hero-heading{align-items:flex-start;flex-direction:column}.hero-note{max-width:520px}.grid,.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.menu{gap:13px}.menu a{font-size:11px}.hero{padding-top:38px}.featured{min-height:390px}.side-news{grid-template-columns:1fr;grid-template-rows:auto}.small-news{min-height:240px}.grid,.project-grid{grid-template-columns:1fr}.news-content{padding:19px}.section{padding:42px 0}.ticker-label{padding:0 10px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a class="logo" href="#">Freelance<b>AI</b><span style="font-size:9px;color:#8f9bb2;letter-spacing:2px;margin-left:9px">STUDIO</span></a>
+    <nav class="menu" aria-label="Main navigation">
+      <a href="#innovation">Innovation</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a class="nav-cta" href="#projects">Explore Studio ↗</a>
+    </nav>
+  </div>
+  <div class="ticker">
+    <div class="ticker-label"><i class="live-dot"></i> TECH RADAR</div>
+    <div class="ticker-window">
+      <div class="ticker-track">
+        <span class="ticker-item"><span>AI RESEARCH</span>Explore new developments in artificial intelligence</span>
+        <span class="ticker-item"><span>OPEN SOURCE</span>Discover tools shaping the developer ecosystem</span>
+        <span class="ticker-item"><span>AUTOMATION</span>New approaches to connected workflows</span>
+        <span class="ticker-item"><span>LLM ENGINEERING</span>Evaluation, reliability and practical applications</span>
+        <span class="ticker-item"><span>AI RESEARCH</span>Explore new developments in artificial intelligence</span>
+        <span class="ticker-item"><span>OPEN SOURCE</span>Discover tools shaping the developer ecosystem</span>
+        <span class="ticker-item"><span>AUTOMATION</span>New approaches to connected workflows</span>
+        <span class="ticker-item"><span>LLM ENGINEERING</span>Evaluation, reliability and practical applications</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero container" id="innovation">
+  <div class="eyebrow">✳ The technology intelligence desk</div>
+  <div class="hero-heading">
+    <h1>Ideas move the world.<br><span class="gradient">We build what’s next.</span></h1>
+    <p class="hero-note">Explore emerging technology, applied AI and digital engineering through one independent innovation studio.</p>
+  </div>
+
+  <div class="news-layout">
+    <article class="news-card featured">
+      <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=85" alt="Abstract artificial intelligence visualization" fetchpriority="high">
+      <div class="news-content">
+        <span class="category">Artificial Intelligence</span>
+        <h2>Inside the next wave of intelligent systems</h2>
+        <p>Explore the ideas, tools and engineering choices behind practical AI applications.</p>
+        <div class="news-meta"><span>INNOVATION BRIEF</span><span class="line"></span><span>RESEARCH & DEVELOPMENT</span></div>
+      </div>
+      <div class="headline-runner"><div class="headline-track">
+        <span>THE FUTURE OF APPLIED AI</span><span>FROM RESEARCH TO REAL-WORLD SYSTEMS</span><span>BUILDING MORE USEFUL DIGITAL TOOLS</span>
+        <span>THE FUTURE OF APPLIED AI</span><span>FROM RESEARCH TO REAL-WORLD SYSTEMS</span><span>BUILDING MORE USEFUL DIGITAL TOOLS</span>
+      </div></div>
+    </article>
+
+    <div class="side-news">
+      <article class="news-card small-news">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Electronic components and computing hardware" loading="lazy">
+        <div class="news-content">
+          <span class="category">Developer Ecosystem</span>
+          <h2>Tools that change how we build software</h2>
+          <p>Frameworks, open source and engineering practices.</p>
+          <div class="news-meta"><span>TECH WATCH</span><span class="line"></span><span>DEVELOPMENT</span></div>
+        </div>
+        <div class="headline-runner"><div class="headline-track">
+          <span>OPEN SOURCE SPOTLIGHT</span><span>THE DEVELOPER TOOLBOX</span><span>OPEN SOURCE SPOTLIGHT</span><span>THE DEVELOPER TOOLBOX</span>
+        </div></div>
+      </article>
+      <article class="news-card small-news">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80" alt="Planet Earth connected by digital networks" loading="lazy">
+        <div class="news-content">
+          <span class="category">Future Systems</span>
+          <h2>Connecting data, automation and AI</h2>
+          <p>How connected systems can improve digital workflows.</p>
+          <div class="news-meta"><span>FUTURE SYSTEMS</span><span class="line"></span><span>ENGINEERING</span></div>
+        </div>
+        <div class="headline-runner"><div class="headline-track">
+          <span>SMARTER WORKFLOWS</span><span>CONNECTED DIGITAL SYSTEMS</span><span>SMARTER WORKFLOWS</span><span>CONNECTED DIGITAL SYSTEMS</span>
+        </div></div>
+      </article>
+    </div>
+  </div>
+  <p class="notice">Editorial preview: these are illustrative topic cards, not verified breaking news. Live news collection has not been connected yet.</p>
+</section>
+
+<section class="section container" id="services">
+  <div class="section-title"><div><h2>Engineering Capabilities</h2><p>From digital foundations to intelligent systems.</p></div><a class="section-link" href="#projects">Explore projects ↗</a></div>
+  <div class="grid">
+    <article class="card"><div class="symbol">⌘</div><h3>Full-Stack Development</h3><p>Responsive websites and robust applications designed around real user needs.</p><span class="tag">Django</span><span class="tag">HTML / CSS</span><span class="tag">WordPress</span></article>
+    <article class="card"><div class="symbol">◈</div><h3>AI & RAG Engineering</h3><p>Knowledge assistants that retrieve relevant information and ground responses in documents.</p><span class="tag">LLMs</span><span class="tag">RAG</span></article>
+    <article class="card"><div class="symbol">⟳</div><h3>Automation & Agents</h3><p>Tool-connected workflows, support agents and repeatable business processes.</p><span class="tag">n8n</span><span class="tag">MCP</span><span class="tag">APIs</span></article>
+  </div>
+</section>
+
+<section class="section container" id="projects">
+  <div class="section-title"><div><h2>Selected Project Concepts</h2><p>Explore the starting points of a growing engineering portfolio.</p></div></div>
+  <input class="search" id="project-search" type="search" placeholder="Search projects and technologies..." aria-label="Search projects">
+  <div class="project-grid" id="project-grid"></div>
+  <div class="pagination" id="pagination"></div>
+  <p class="notice">This preview contains 10 project concepts, not 150 completed projects. Detailed project pages, working source code and READMEs must be built and verified individually.</p>
+</section>
+
+<section class="section container" id="about">
+  <div class="section-title"><div><h2>Technology, Thoughtfully Engineered.</h2><p>FreelanceAI explores the intersection of AI, software engineering, automation and useful digital products.</p></div></div>
+</section>
+</main>
+
+<footer><div class="container footer-row"><a class="logo" href="#">Freelance<b>AI</b></a><span>© 2026 FreelanceAI Studio · Built for what comes next.</span></div></footer>
+
+<script>
+const projects = [
+ ["AI Knowledge Assistant","AI / RAG","Python · Django","Search trusted documents and generate source-grounded answers."],
+ ["Intelligent Support Agent","AI Agents","Python · APIs","Classify support requests and suggest relevant responses."],
+ ["Workflow Automation Hub","Automation","n8n · Webhooks","Connect digital tools and automate repeatable workflows."],
+ ["Technology News Tracker","Data Engineering","Python · RSS","Collect technology headlines for review and publication."],
+ ["Analytics Dashboard","Data Analytics","Python · Data","Transform datasets into useful operational insights."],
+ ["MCP Tool Explorer","Developer Tools","Python · MCP","Prototype a safe interface for connected AI tools."],
+ ["Portfolio Management CMS","Web Development","Django · SQLite","Manage project descriptions, technologies and publication status."],
+ ["Document Search Engine","AI / Search","Embeddings · Search","Find useful passages across a document collection."],
+ ["LLM Evaluation Toolkit","LLMOps","Python · Testing","Evaluate model outputs against repeatable test cases."],
+ ["API Monitoring Console","DevOps","Python · APIs","Track endpoint health and summarize monitoring results."]
+];
+const grid=document.getElementById("project-grid");
+const pagination=document.getElementById("pagination");
+const search=document.getElementById("project-search");
+let page=1;
+function renderProjects(){
+ const q=search.value.trim().toLowerCase();
+ const results=projects.filter(p=>p.join(" ").toLowerCase().includes(q));
+ const pages=Math.max(1,Math.ceil(results.length/6));
+ page=Math.min(page,pages);
+ grid.replaceChildren();
+ results.slice((page-1)*6,page*6).forEach((p,i)=>{
+  const card=document.createElement("article");card.className="card";
+  const symbol=document.createElement("div");symbol.className="symbol";symbol.textContent="✳";
+  const title=document.createElement("h3");title.textContent=`${(page-1)*6+i+1}. ${p[0]}`;
+  const category=document.createElement("span");category.className="tag";category.textContent=p[1];
+  const desc=document.createElement("p");desc.textContent=p[3];
+  const tech=document.createElement("span");tech.className="tag";tech.textContent=p[2];
+  card.append(symbol,title,desc,category,tech);grid.append(card);
+ });
+ if(!results.length){const msg=document.createElement("p");msg.textContent="No matching projects found.";msg.className="notice";grid.append(msg)}
+ pagination.replaceChildren();
+ for(let n=1;n<=pages;n++){const b=document.createElement("button");b.className="page-btn"+(n===page?" active":"");b.textContent=n;b.addEventListener("click",()=>{page=n;renderProjects()});pagination.append(b)}
+}
+search.addEventListener("input",()=>{page=1;renderProjects()});
+renderProjects();
+</script>
+</body>
+</html>
